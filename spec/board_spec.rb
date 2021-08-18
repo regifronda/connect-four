@@ -29,4 +29,20 @@ describe Board do
       end
     end
   end
+
+  describe 'column_choice_available?' do
+    subject(:board_available) { described_class.new }
+
+    context 'when given a choice for an empty column in the board and board is empty' do
+      before do
+        board_available.instance_variable_set(:@board, [[nil, nil, nil, nil, nil, nil, nil], [nil, nil, nil, nil, nil, nil, nil], [nil, nil, nil, nil, nil, nil, nil], [nil, nil, nil, nil, nil, nil, nil], [nil, nil, nil, nil, nil, nil, nil], [nil, nil, nil, nil, nil, nil, nil]])
+      end
+
+      it 'returns true' do
+        available_column = 3
+        column_check = board_available.column_choice_available?(available_column)
+        expect(column_check).to be true
+      end
+    end
+  end
 end
