@@ -23,7 +23,7 @@ describe Board do
 
     context 'when given an invalid number as argument' do
       it 'returns false' do
-        invalid_number = 7
+        invalid_number = 8
         unverified_number = board_choice.in_choice_range?(invalid_number)
         expect(unverified_number).to be false
       end
@@ -51,7 +51,7 @@ describe Board do
       end
 
       it 'returns true' do
-        available_column = 0
+        available_column = 1
         column_check = board_available.column_choice_available?(available_column)
         expect(column_check).to be true
       end
@@ -63,7 +63,7 @@ describe Board do
       end
 
       it 'returns false' do
-        available_column = 0
+        available_column = 1
         column_check = board_available.column_choice_available?(available_column)
         expect(column_check).to be false
       end
