@@ -7,13 +7,24 @@ class Board
 
   def render
     puts
-    @board.each do |row|
-      row.each do |cell|
-      cell.nil? ? print("-") : print(cell.to_s)
-      end
-      puts
-    end
+    puts "1234567"
+    render_help(0, 5)|render_help(1, 5)|render_help(2, 5)|render_help(3, 5)|render_help(4, 5)|render_help(5, 5)|render_help(6, 5)
     puts
+    render_help(0, 4)|render_help(1, 4)|render_help(2, 4)|render_help(3, 4)|render_help(4, 4)|render_help(5, 4)|render_help(6, 4)
+    puts
+    render_help(0, 3)|render_help(1, 3)|render_help(2, 3)|render_help(3, 3)|render_help(4, 3)|render_help(5, 3)|render_help(6, 3)
+    puts
+    render_help(0, 2)|render_help(1, 2)|render_help(2, 2)|render_help(3, 2)|render_help(4, 2)|render_help(5, 2)|render_help(6, 2)
+    puts
+    render_help(0, 1)|render_help(1, 1)|render_help(2, 1)|render_help(3, 1)|render_help(4, 1)|render_help(5, 1)|render_help(6, 1)
+    puts
+    render_help(0, 0)|render_help(1, 0)|render_help(2, 0)|render_help(3, 0)|render_help(4, 0)|render_help(5, 0)|render_help(6, 0)
+    puts
+    puts
+  end
+
+  def render_help(column, column_index)
+    board[column][column_index].nil? ? print("-") : print(board[column][column_index].to_s)
   end
 
   def in_choice_range?(choice)
