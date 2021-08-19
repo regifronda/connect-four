@@ -2,7 +2,7 @@ class Board
   attr_accessor :board
 
   def initialize
-    @board = Array.new(6) { Array.new(7) }
+    @board = Array.new(7) { Array.new(6) }
   end
 
   def render
@@ -17,10 +17,10 @@ class Board
   end
 
   def in_choice_range?(choice)
-    choice.between?(0, 6)
+    choice.between?(1, 7)
   end
 
   def column_choice_available?(choice)
-    @board[choice].any?(&:nil?)
+    @board[choice - 1].any?(&:nil?)
   end
 end
