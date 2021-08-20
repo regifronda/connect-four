@@ -22,7 +22,7 @@ class Board
     puts
     puts
   end
-
+  
   def render_help(column, column_index)
     board[column][column_index].nil? ? print("-") : print(board[column][column_index].to_s)
   end
@@ -32,6 +32,25 @@ class Board
   end
 
   def column_choice_available?(choice)
-    @board[choice - 1].any?(&:nil?)
+    board[choice - 1].any?(&:nil?)
+  end
+
+  def winning_vertical?(piece)
+    7.times do |column|
+      6.times do |row|
+        if board[column][row] == piece && board[column][row + 1] == piece && board[column][row + 2] == piece && board[column][row + 3] == piece
+          return true
+        else
+          return false
+        end
+      end
+    end
+  end
+
+  def winning_horizontal?(piece)
+    6.times do |row|
+      7.times do |column|
+        
+    end
   end
 end
