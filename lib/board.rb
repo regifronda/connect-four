@@ -38,7 +38,10 @@ class Board
   def winning_vertical?(piece)
     7.times do |column|
       6.times do |row|
-        if board[column][row] == piece && board[column][row + 1] == piece && board[column][row + 2] == piece && board[column][row + 3] == piece
+        if board[column][row] == piece && 
+          board[column][row + 1] == piece && 
+          board[column][row + 2] == piece && 
+          board[column][row + 3] == piece
           return true
         else
           return false
@@ -50,7 +53,15 @@ class Board
   def winning_horizontal?(piece)
     6.times do |row|
       7.times do |column|
-        
+        if board[column][row] == piece && 
+          board[column + 1][row] == piece &&
+          board[column + 2][row] == piece &&
+          board[column + 3][row] == piece
+          return true
+        else
+          return false
+        end
+      end
     end
   end
 end
