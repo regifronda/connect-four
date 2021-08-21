@@ -180,8 +180,23 @@ describe Board do
       end
     end
 
-    context 'when three of the same piece are vertically adjacent to one another' do
-    
+    context 'when three of the same piece are horizontally adjacent to one another' do
+      before do
+        board_horizontal.instance_variable_set(:@board, [
+          ["\e[31mO\e[0m", "\e[37mO\e[0m", nil, nil, nil, nil],
+          ["\e[31mO\e[0m", "\e[37mO\e[0m", nil, nil, nil, nil],
+          ["\e[31mO\e[0m", "\e[37mO\e[0m", nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil]
+        ])
+      end
+
+      it 'returns false' do
+        winning_piece = "\e[31mO\e[0m"
+        horizontal_check = board_horizontal.winning_horizontal?(winning_piece)
+        expect(horizontal_check).to be false
+      end
     end
     
     context 'when the board is empty' do
