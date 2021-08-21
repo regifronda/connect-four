@@ -1,5 +1,6 @@
 require './lib/board'
 
+
 describe Board do
   describe '#initialize' do
     subject(:board_initialize) { described_class.new }
@@ -157,5 +158,49 @@ describe Board do
     end
   end
 
-  
+  describe '#winning_horizontal?' do
+    subject(:board_horizontal) { described_class.new }
+
+    context 'when four of the same piece are horizontally adjacent to one another' do
+      before do
+        board_horizontal.instance_variable_set(:@board, [
+          ["\e[31mO\e[0m", "\e[37mO\e[0m", nil, nil, nil, nil],
+          ["\e[31mO\e[0m", "\e[37mO\e[0m", nil, nil, nil, nil],
+          ["\e[31mO\e[0m", "\e[37mO\e[0m", nil, nil, nil, nil],
+          ["\e[31mO\e[0m", nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil]
+        ])
+      end
+
+      it 'returns true' do
+        winning_piece = "\e[31mO\e[0m"
+        horizontal_check = board_horizontal.winning_horizontal?(winning_piece)
+        expect(horizontal_check).to be true
+      end
+    end
+
+    context 'when three of the same piece are vertically adjacent to one another' do
+    
+    end
+    
+    context 'when the board is empty' do
+      before do
+        board_horizontal.instance_variable_set(:@board, [
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil]
+        ])
+      end
+
+      it 'returns false' do
+        winning_piece = "\e[31mO\e[0m"
+        horizontal_check = board_horizontal.winning_horizontal?(winning_piece)
+        expect(horizontal_check).to be false
+      end
+    end
+  end
 end
