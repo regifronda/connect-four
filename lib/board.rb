@@ -64,4 +64,19 @@ class Board
       end
     end
   end
+
+  def winning_ascending_diagonal?(piece)
+    (3..5).each do |row|
+      (3..6).each do |column|
+        if board[column][row] == piece && 
+          board[column - 1][row - 1] == piece &&
+          board[column - 2][row - 2] == piece &&
+          board[column - 3][row - 3] == piece
+          return true
+        else
+          return false
+        end
+      end
+    end
+  end
 end
