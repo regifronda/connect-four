@@ -68,7 +68,9 @@ describe Board do
           [nil, nil, nil, nil, nil, nil], 
           [nil, nil, nil, nil, nil, nil], 
           [nil, nil, nil, nil, nil, nil], 
-          [nil, nil, nil, nil, nil, nil]])
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil]
+          ])
       end
 
       it 'returns true' do
@@ -86,7 +88,9 @@ describe Board do
           [nil, nil, nil, nil, nil, nil], 
           [nil, nil, nil, nil, nil, nil], 
           [nil, nil, nil, nil, nil, nil], 
-          [nil, nil, nil, nil, nil, nil]])
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil]
+          ])
       end
 
       it 'returns false' do
@@ -105,6 +109,7 @@ describe Board do
         board_vertical.instance_variable_set(:@board, [
           ["\e[31mO\e[0m", "\e[31mO\e[0m", "\e[31mO\e[0m", "\e[31mO\e[0m", nil, nil],
           ["\e[37mO\e[0m", "\e[37mO\e[0m", "\e[37mO\e[0m", nil, nil, nil], 
+          [nil, nil, nil, nil, nil, nil],
           [nil, nil, nil, nil, nil, nil],
           [nil, nil, nil, nil, nil, nil],
           [nil, nil, nil, nil, nil, nil],
@@ -127,6 +132,7 @@ describe Board do
           [nil, nil, nil, nil, nil, nil],
           [nil, nil, nil, nil, nil, nil],
           [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
           [nil, nil, nil, nil, nil, nil]
           ])
       end
@@ -141,6 +147,7 @@ describe Board do
     context 'when board is empty' do
       before do
         board_vertical.instance_variable_set(:@board, [
+          [nil, nil, nil, nil, nil, nil],
           [nil, nil, nil, nil, nil, nil],
           [nil, nil, nil, nil, nil, nil],
           [nil, nil, nil, nil, nil, nil],
@@ -169,6 +176,7 @@ describe Board do
           ["\e[31mO\e[0m", "\e[37mO\e[0m", nil, nil, nil, nil],
           ["\e[31mO\e[0m", nil, nil, nil, nil, nil],
           [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
           [nil, nil, nil, nil, nil, nil]
         ])
       end
@@ -188,6 +196,7 @@ describe Board do
           ["\e[31mO\e[0m", "\e[37mO\e[0m", nil, nil, nil, nil],
           [nil, nil, nil, nil, nil, nil],
           [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
           [nil, nil, nil, nil, nil, nil]
         ])
       end
@@ -202,6 +211,7 @@ describe Board do
     context 'when the board is empty' do
       before do
         board_horizontal.instance_variable_set(:@board, [
+          [nil, nil, nil, nil, nil, nil],
           [nil, nil, nil, nil, nil, nil],
           [nil, nil, nil, nil, nil, nil],
           [nil, nil, nil, nil, nil, nil],
@@ -282,4 +292,7 @@ describe Board do
       end
     end
   end
+
+
+
 end
