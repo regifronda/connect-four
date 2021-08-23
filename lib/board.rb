@@ -1,3 +1,5 @@
+require 'pry-byebug'
+
 class Board
   attr_accessor :board
 
@@ -69,12 +71,31 @@ class Board
     (0..3).each do |column|
       (0..2).each do |row|
         next if board[column][row] == nil
-        next if board[column][row] != board[column + 2][row + 2] && 
-        board[column][row] == piece
-        return true if board[column][row] == board[row + 1][column + 1] &&
-        board[column + 2][row + 2] == board[column + 3][row + 3]
+        next if board[column][row] != board[column + 2][row + 2]
+        if board[column][row] == board[row + 1][column + 1] &&
+          board[column + 2][row + 2] == board[column + 3][row + 3] &&
+          board[column][row] == piece
+          return true
+        end
       end
     end
+    return false
+  end
+
+  def winning_descending_diagonal?(piece)
+    board.each_with_index { |column, board_index|
+      column.each_index { |column_index|
+        next if @board[board_index].nil? || @board[board_index][column_index].nil?
+        next if @board[board_index + 1].nil? || @board[board_index + 1][column_index - 1].nil?
+        next if @board[board_index + 2].nil? || @board[board_index + 2][column_index - 2].nil?
+        next if @board[board_index + 3].nil? || @board[board_index + 3][column_index - 3].nil?
+
+        return true if ( (@board[board_index][column_index] == @board[board_index + 1][column_index - 1]) && 
+        (@board[board_index + 1][column_index - 1] == @board[board_index + 2][column_index - 2]) && 
+        (@board[board_index + 2][column_index - 2] == @board[board_index + 3][column_index - 3]) &&
+        (@board[board_index][column_index] == piece) )
+      }
+    }
     return false
   end
 end
