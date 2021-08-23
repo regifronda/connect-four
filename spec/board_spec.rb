@@ -229,7 +229,7 @@ describe Board do
     end
   end
 
-  describe 'winning_ascending_diagonal?' do 
+  describe '#winning_ascending_diagonal?' do 
     subject(:board_ascending_diagonal) { described_class.new }
     
     context 'when four of the same piece are in an ascending diagonal line' do
@@ -281,7 +281,7 @@ describe Board do
           [nil, nil, nil, nil, nil, nil],
           [nil, nil, nil, nil, nil, nil],
           [nil, nil, nil, nil, nil, nil],
-          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil]
         ])
       end
 
@@ -293,6 +293,47 @@ describe Board do
     end
   end
 
+  describe '#winning_descending_diagonal?' do 
+    subject(:board_descending_diagonal) { described_class.new }
 
+    context 'when four of the same piece are in an descending diagonal line' do
+      before do
+        board_descending_diagonal.instance_variable_set(:@board, [
+          ["\e[37mO\e[0m", "\e[31mO\e[0m", "\e[37mO\e[0m", "\e[31mO\e[0m", nil, nil],
+          ["\e[37mO\e[0m", "\e[31mO\e[0m", "\e[31mO\e[0m", nil, nil, nil],
+          ["\e[37mO\e[0m", "\e[31mO\e[0m", nil, nil, nil, nil],
+          ["\e[31mO\e[0m", nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil]
+        ])
+      end
 
+      it 'returns true' do
+        winning_piece = "\e[31mO\e[0m"
+        descending_diagonal_check = board_descending_diagonal.winning_descending_diagonal?(winning_piece)
+        expect(descending_diagonal_check).to be true
+      end
+    end
+
+    context 'when board is empty' do
+      before do
+        board_descending_diagonal.instance_variable_set(:@board, [
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil]
+        ])
+      end
+
+      it 'returns false' do
+        winning_piece = "\e[31mO\e[0m"
+        descending_diagonal_check = board_descending_diagonal.winning_descending_diagonal?(winning_piece)
+        expect(descending_diagonal_check).to be false
+      end
+    end
+  end
 end
