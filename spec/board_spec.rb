@@ -370,9 +370,41 @@ describe Board do
       end
 
       it 'returns false' do
-        winning_piece = "\e[31mO\e[0m"
-        descending_diagonal_check = board_descending_diagonal.winning_descending_diagonal?(winning_piece)
+        piece = "\e[31mO\e[0m"
+        descending_diagonal_check = board_descending_diagonal.winning_descending_diagonal?(piece)
         expect(descending_diagonal_check).to be false
+      end
+    end
+  end
+
+  describe '#add_piece' do
+    subject(:board_add) { described_class.new }
+
+    context 'when the board is empty' do
+      before do
+        board_add.instance_variable_set(:@board, [
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil]
+        ])
+      end
+
+      it 'adds the new piece' do
+        added_piece_board = [
+          ["\e[31mO\e[0m", nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil]
+        ]
+        added_check = board_add.add_piece(1, "\e[31mO\e[0m")
+        expect(board_add.board).to eql(added_piece_board)
       end
     end
   end
