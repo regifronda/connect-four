@@ -29,6 +29,20 @@ class Board
     board[column][column_index].nil? ? print("-") : print(board[column][column_index].to_s)
   end
 
+  def add_piece(column, piece)
+    if column_valid?(column)
+      empty_slots = board[column - 1].count { |slot| slot.nil? }
+      empty_row = 6 - empty_slots
+      board[column - 1][empty_row] = piece
+    end
+  end
+
+  def column_valid?(column)
+    if in_choice_range?(column)
+      column_choice_available?(column)
+    end
+  end
+
   def in_choice_range?(choice)
     choice.between?(1, 7)
   end
@@ -83,17 +97,17 @@ class Board
   end
 
   def winning_descending_diagonal?(piece)
-    board.each_with_index { |column, board_index|
-      column.each_index { |column_index|
-        next if @board[board_index].nil? || @board[board_index][column_index].nil?
-        next if @board[board_index + 1].nil? || @board[board_index + 1][column_index - 1].nil?
-        next if @board[board_index + 2].nil? || @board[board_index + 2][column_index - 2].nil?
-        next if @board[board_index + 3].nil? || @board[board_index + 3][column_index - 3].nil?
+    board.each_with_index { |column, column_index|
+      column.each_index { |row|
+        next if board[column_index].nil? || board[column_index][row].nil?
+        next if board[column_index + 1].nil? || board[column_index + 1][row - 1].nil?
+        next if board[column_index + 2].nil? || board[column_index + 2][row - 2].nil?
+        next if board[column_index + 3].nil? || board[column_index + 3][row - 3].nil?
 
-        return true if ( (@board[board_index][column_index] == @board[board_index + 1][column_index - 1]) && 
-        (@board[board_index + 1][column_index - 1] == @board[board_index + 2][column_index - 2]) && 
-        (@board[board_index + 2][column_index - 2] == @board[board_index + 3][column_index - 3]) &&
-        (@board[board_index][column_index] == piece) )
+        return true if ( (board[column_index][row] == board[column_index+ 1][row- 1]) && 
+        (board[column_index + 1][row - 1] == board[column_index + 2][row - 2]) && 
+        (board[column_index + 2][row - 2] == board[column_index + 3][row - 3]) &&
+        (board[column_index][row] == piece) )
       }
     }
     return false
