@@ -316,6 +316,46 @@ describe Board do
       end
     end
 
+    context 'when only three pieces are in an descending diagonal line' do
+      before do
+        board_descending_diagonal.instance_variable_set(:@board, [
+          ["\e[37mO\e[0m", "\e[31mO\e[0m", "\e[37mO\e[0m", nil, nil, nil],
+          ["\e[37mO\e[0m", "\e[31mO\e[0m", "\e[31mO\e[0m", nil, nil, nil],
+          ["\e[37mO\e[0m", "\e[31mO\e[0m", nil, nil, nil, nil],
+          ["\e[31mO\e[0m", nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil]
+        ])
+      end
+
+      it 'returns false' do
+        winning_piece = "\e[31mO\e[0m"
+        descending_diagonal_check = board_descending_diagonal.winning_descending_diagonal?(winning_piece)
+        expect(descending_diagonal_check).to be false
+      end
+    end
+
+    context 'when descending diagonal is on right side of the board' do
+      before do
+        board_descending_diagonal.instance_variable_set(:@board, [
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          ["\e[37mO\e[0m", "\e[31mO\e[0m", "\e[37mO\e[0m", "\e[31mO\e[0m", nil, nil],
+          ["\e[37mO\e[0m", "\e[31mO\e[0m", "\e[31mO\e[0m", nil, nil, nil],
+          ["\e[37mO\e[0m", "\e[31mO\e[0m", nil, nil, nil, nil],
+          ["\e[31mO\e[0m", nil, nil, nil, nil, nil]
+        ])
+      end
+
+      it 'returns true' do
+        winning_piece = "\e[31mO\e[0m"
+        descending_diagonal_check = board_descending_diagonal.winning_descending_diagonal?(winning_piece)
+        expect(descending_diagonal_check).to be true
+      end
+    end
+    
     context 'when board is empty' do
       before do
         board_descending_diagonal.instance_variable_set(:@board, [
