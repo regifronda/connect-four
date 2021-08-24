@@ -82,17 +82,19 @@ class Board
   end
 
   def winning_ascending_diagonal?(piece)
-    (0..3).each do |column|
-      (0..2).each do |row|
-        next if board[column][row] == nil
-        next if board[column][row] != board[column + 2][row + 2]
-        if board[column][row] == board[row + 1][column + 1] &&
-          board[column + 2][row + 2] == board[column + 3][row + 3] &&
-          board[column][row] == piece
-          return true
-        end
-      end
-    end
+    board.each_with_index { |column, column_index|
+      column.each_index { |row|
+        next if board[column_index].nil? || board[column_index][row].nil?
+        next if board[column_index + 1].nil? || board[column_index + 1][row + 1].nil?
+        next if board[column_index + 2].nil? || board[column_index + 2][row + 2].nil?
+        next if board[column_index + 3].nil? || board[column_index + 3][row + 3].nil?
+
+        return true if ( (board[column_index][row] == board[column_index+ 1][row + 1]) && 
+        (board[column_index + 1][row + 1] == board[column_index + 2][row + 2]) && 
+        (board[column_index + 2][row + 2] == board[column_index + 3][row + 3]) &&
+        (board[column_index][row] == piece) )
+      }
+    }
     return false
   end
 
@@ -104,7 +106,7 @@ class Board
         next if board[column_index + 2].nil? || board[column_index + 2][row - 2].nil?
         next if board[column_index + 3].nil? || board[column_index + 3][row - 3].nil?
 
-        return true if ( (board[column_index][row] == board[column_index+ 1][row- 1]) && 
+        return true if ( (board[column_index][row] == board[column_index+ 1][row - 1]) && 
         (board[column_index + 1][row - 1] == board[column_index + 2][row - 2]) && 
         (board[column_index + 2][row - 2] == board[column_index + 3][row - 3]) &&
         (board[column_index][row] == piece) )
