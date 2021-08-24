@@ -1,6 +1,5 @@
 require './lib/board'
 
-
 describe Board do
   describe '#initialize' do
     subject(:board_initialize) { described_class.new }
@@ -107,11 +106,11 @@ describe Board do
     context 'when four of the same piece are vertically adjacent to one another' do
       before do
         board_vertical.instance_variable_set(:@board, [
-          ["\e[31mO\e[0m", "\e[31mO\e[0m", "\e[31mO\e[0m", "\e[31mO\e[0m", nil, nil],
+          [nil, nil, nil, nil, nil, nil],
           ["\e[37mO\e[0m", "\e[37mO\e[0m", "\e[37mO\e[0m", nil, nil, nil], 
           [nil, nil, nil, nil, nil, nil],
           [nil, nil, nil, nil, nil, nil],
-          [nil, nil, nil, nil, nil, nil],
+          ["\e[31mO\e[0m", "\e[31mO\e[0m", "\e[31mO\e[0m", "\e[31mO\e[0m", nil, nil],
           [nil, nil, nil, nil, nil, nil],
           [nil, nil, nil, nil, nil, nil]
           ])
@@ -404,6 +403,34 @@ describe Board do
           [nil, nil, nil, nil, nil, nil]
         ]
         added_check = board_add.add_piece(1, "\e[31mO\e[0m")
+        expect(board_add.board).to eql(added_piece_board)
+      end
+    end
+
+    context 'when the selected column has 3 pieces' do
+      before do
+        board_add.instance_variable_set(:@board, [
+          ["\e[31mO\e[0m", "\e[37mO\e[0m", "\e[31mO\e[0m", nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil]
+        ])
+      end
+
+      it 'does not add the new piece' do
+        added_piece_board = [
+          ["\e[31mO\e[0m", "\e[37mO\e[0m", "\e[31mO\e[0m", "\e[37mO\e[0m", nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil],
+          [nil, nil, nil, nil, nil, nil]
+        ]
+        added_check = board_add.add_piece(1, "\e[37mO\e[0m")
         expect(board_add.board).to eql(added_piece_board)
       end
     end
