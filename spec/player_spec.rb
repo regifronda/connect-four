@@ -55,6 +55,5 @@ describe Player do
         player_choice.get_column_choice
       end
     end
-
   end
 end
