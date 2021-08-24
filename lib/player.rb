@@ -7,14 +7,23 @@ class Player
     @board = board
   end
 
+  def get_column_choice
+    loop do
+      break if verify_column_choice(ask_for_column_choice)
+
+      puts 'Input error!'
+    end
+
+  end
+
   def ask_for_column_choice
     puts "Please select a column from 1 to 7."
     gets.chomp
   end
 
-  def validate_column_choice(choice)
-    choice.match? /\A\d+\z/ ? true : false
-      return true
+  def verify_column_choice(choice)
+    if choice.match? /\A\d+\z/
+      return choice
     else
       return false
     end
