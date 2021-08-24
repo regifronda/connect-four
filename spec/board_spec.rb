@@ -234,13 +234,13 @@ describe Board do
     context 'when four of the same piece are in an ascending diagonal line' do
       before do
         board_ascending_diagonal.instance_variable_set(:@board, [
+          [nil, nil, nil, nil, nil, nil],
           ["\e[31mO\e[0m", nil, nil, nil, nil, nil],
           ["\e[37mO\e[0m", "\e[31mO\e[0m", nil, nil, nil, nil],
           ["\e[37mO\e[0m", "\e[31mO\e[0m", "\e[31mO\e[0m", nil, nil, nil],
           ["\e[37mO\e[0m", "\e[37mO\e[0m", "\e[31mO\e[0m", "\e[31mO\e[0m", nil, nil],
           [nil, nil, nil, nil, nil, nil],
           ["\e[37mO\e[0m", nil, nil, nil, nil, nil],
-          [nil, nil, nil, nil, nil, nil]
         ])
       end
 
