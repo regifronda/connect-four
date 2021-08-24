@@ -173,10 +173,10 @@ describe Board do
           ["\e[31mO\e[0m", "\e[37mO\e[0m", nil, nil, nil, nil],
           ["\e[31mO\e[0m", "\e[37mO\e[0m", nil, nil, nil, nil],
           ["\e[31mO\e[0m", "\e[37mO\e[0m", nil, nil, nil, nil],
-          ["\e[31mO\e[0m", nil, nil, nil, nil, nil],
+          ["\e[37mO\e[0m", "\e[37mO\e[0m", nil, nil, nil, nil],
           [nil, nil, nil, nil, nil, nil],
           [nil, nil, nil, nil, nil, nil],
-          [nil, nil, nil, nil, nil, nil]
+          ["\e[31mO\e[0m", "\e[31mO\e[0m", nil, nil, nil, nil]
         ])
       end
 
