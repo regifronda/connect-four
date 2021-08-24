@@ -53,6 +53,13 @@ class Board
     board[choice - 1].any?(&:nil?)
   end
 
+  def winning_combination?(piece)
+    winning_vertical?(piece) ||
+    winning_horizontal?(piece) ||
+    winning_ascending_diagonal?(piece) ||
+    winning_descending_diagonal?(piece)
+  end
+
   def winning_vertical?(piece)
     7.times do |column|
       6.times do |row|
