@@ -67,23 +67,18 @@ class Board
         return true if won
       end
     end
-
-    false
+    return false
   end
 
   def winning_horizontal?(piece)
-    6.times do |row|
-      7.times do |column|
-        if board[column][row] == piece && 
-          board[column + 1][row] == piece &&
-          board[column + 2][row] == piece &&
-          board[column + 3][row] == piece
-          return true
-        else
-          return false
-        end
+    transposed_board = board.transpose
+    transposed_board.each do |column|
+      (0..3).each do |row|
+        won = column[row..(row + 3)].all? { |piece| piece == column[row] && !piece.nil? }
+        return true if won
       end
     end
+    return false
   end
 
   def winning_ascending_diagonal?(piece)
