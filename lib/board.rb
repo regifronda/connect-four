@@ -29,17 +29,19 @@ class Board
     board[column][column_index].nil? ? print("-") : print(board[column][column_index].to_s)
   end
 
-  def add_piece(column, piece)
-    if column_valid?(column)
-      empty_slots = board[column - 1].count { |slot| slot.nil? }
+  def add_piece(choice, piece)
+    if column_valid?(choice)
+      empty_slots = board[choice - 1].count { |slot| slot.nil? }
       empty_row = 6 - empty_slots
-      board[column - 1][empty_row] = piece
+      board[choice - 1][empty_row] = piece
+    else
+      return false
     end
   end
 
-  def column_valid?(column)
-    if in_choice_range?(column)
-      column_choice_available?(column)
+  def column_valid?(choice)
+    if in_choice_range?(choice)
+      column_choice_available?(choice)
     end
   end
 
