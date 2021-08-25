@@ -24,18 +24,29 @@ class Game
   end
 
   def turn
-    choice = current_player.get_column_choice.to_i
-    board.add_piece(choice, current_player.piece)
-    board.render
+    loop do
+      board.render
+      choice = current_player.get_column_choice.to_i
+      break if board.add_piece(choice, current_player.piece)
+    end
   end
 
   def check_game_over
-    check_victory
+    check_victory || check_draw
   end
 
   def check_victory
     if board.winning_combination?(current_player.piece)
       puts "Congratulations! You win, #{current_player.name}!"
+      true
+    else
+      false
+    end
+  end
+
+  def check_draw
+    if board.full?
+      puts "Too bad, it's a draw!"
       true
     else
       false
@@ -53,6 +64,5 @@ class Game
   def game_intro
     puts 'Welcome to Connect 4!'
     puts 'Try to get 4 of your own piece consecutively in a row, column, or diagonal.'
-    board.render
   end
 end
