@@ -18,7 +18,7 @@ class Game
   def player_turns
     until board.full?
       turn
-      #break if check_game_over
+      break if check_game_over
       switch_players
     end
   end
@@ -27,6 +27,19 @@ class Game
     choice = current_player.get_column_choice.to_i
     board.add_piece(choice, current_player.piece)
     board.render
+  end
+
+  def check_game_over
+    check_victory
+  end
+
+  def check_victory
+    if board.winning_combination?(current_player.piece)
+      puts "Congratulations! You win, #{current_player.name}!"
+      true
+    else
+      false
+    end
   end
 
   def switch_players
