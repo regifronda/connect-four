@@ -13,7 +13,8 @@ describe Board do
         [nil, nil, nil, nil, nil, nil], 
         [nil, nil, nil, nil, nil, nil], 
         [nil, nil, nil, nil, nil, nil], 
-        [nil, nil, nil, nil, nil, nil]])
+        [nil, nil, nil, nil, nil, nil]
+        ])
     end
   end
 
@@ -49,7 +50,8 @@ describe Board do
           [nil, nil, nil, nil, nil, nil], 
           [nil, nil, nil, nil, nil, nil], 
           [nil, nil, nil, nil, nil, nil], 
-          [nil, nil, nil, nil, nil, nil]])
+          [nil, nil, nil, nil, nil, nil]
+          ])
       end
 
       it 'returns true' do
@@ -476,7 +478,7 @@ describe Board do
           ["\e[37mO\e[0m", "\e[31mO\e[0m", "\e[37mO\e[0m", "\e[31mO\e[0m", "\e[37mO\e[0m", "\e[31mO\e[0m"],
           ["\e[31mO\e[0m", "\e[37mO\e[0m", "\e[31mO\e[0m", "\e[37mO\e[0m", "\e[31mO\e[0m", "\e[37mO\e[0m"],
           ["\e[37mO\e[0m", "\e[31mO\e[0m", "\e[37mO\e[0m", "\e[31mO\e[0m", "\e[37mO\e[0m", "\e[31mO\e[0m"],
-          ["\e[31mO\e[0m", "\e[37mO\e[0m", "\e[31mO\e[0m", "\e[37mO\e[0m", "\e[31mO\e[0m", "\e[37mO\e[0m"],
+          ["\e[31mO\e[0m", "\e[37mO\e[0m", "\e[31mO\e[0m", "\e[37mO\e[0m", "\e[31mO\e[0m", "\e[37mO\e[0m"]
         ])
       end
 
