@@ -36,15 +36,15 @@ class Board
       board[choice - 1][empty_row] = piece
       return true
     else
+      puts 'Input error!'
       return false
     end
   end
 
   def column_valid?(choice)
-    if in_choice_range?(choice)
-      column_choice_available?(choice)
+    if in_choice_range?(choice) && column_choice_available?(choice)
+      return true
     else
-      puts 'Input error!'
       return false
     end
   end
@@ -54,7 +54,11 @@ class Board
   end
 
   def column_choice_available?(choice)
-    board[choice - 1].any?(&:nil?)
+    if board[choice - 1].any?(&:nil?)
+      return true
+    else
+      false
+    end
   end
 
   def winning_combination?(piece)
