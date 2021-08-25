@@ -34,6 +34,7 @@ class Board
       empty_slots = board[choice - 1].count { |slot| slot.nil? }
       empty_row = 6 - empty_slots
       board[choice - 1][empty_row] = piece
+      return true
     else
       return false
     end
@@ -42,6 +43,9 @@ class Board
   def column_valid?(choice)
     if in_choice_range?(choice)
       column_choice_available?(choice)
+    else
+      puts 'Input error!'
+      return false
     end
   end
 
