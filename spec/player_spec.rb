@@ -7,9 +7,9 @@ describe Player do
 
     context 'when given a valid number as an argument' do
       it 'returns true' do
-        valid_number = '1'
+        valid_number = 1
         verified_input = player_verify.verify_column_choice(valid_number)
-        expect(verified_input).to eq('1')
+        expect(verified_input).to eq(1)
       end
     end
 
@@ -36,7 +36,7 @@ describe Player do
 
     context 'when user input is valid' do
       it 'stops loop and does not display error message' do
-        valid_input = '3'
+        valid_input = 3
         allow(player_choice).to receive(:ask_for_column_choice).and_return(valid_input)
         expect(player_choice).not_to receive(:puts).with('Input error!')
         player_choice.get_column_choice
@@ -46,7 +46,7 @@ describe Player do
     context 'when user inputs an incorrect value once, then a valid input' do
       before do
         letter = 'd'
-        valid_input = '7'
+        valid_input = 7
         allow(player_choice).to receive(:ask_for_column_choice).and_return(letter, valid_input)
       end
 
