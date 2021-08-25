@@ -1,5 +1,5 @@
 class Player
-  attr_accessor :piece, :board
+  attr_accessor :name, :piece, :board
 
   def initialize(name, piece, board)
     @name = name
@@ -17,7 +17,7 @@ class Player
   end
 
   def ask_for_column_choice
-    puts "Please select a column from 1 to 7."
+    puts "#{name}, please select a column from 1 to 7."
     gets.chomp
   end
 
