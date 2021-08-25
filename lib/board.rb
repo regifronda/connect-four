@@ -118,4 +118,10 @@ class Board
     }
     return false
   end
+
+  def full?
+    board.all? do |column|
+      column.none?(&:nil?)
+    end
+  end
 end
