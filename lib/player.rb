@@ -9,20 +9,20 @@ class Player
 
   def get_column_choice
     loop do
-      break if verify_column_choice(ask_for_column_choice)
+      choice = ask_for_column_choice
+      return choice if verify_column_choice(choice)
 
       puts 'Input error!'
     end
-
   end
 
   def ask_for_column_choice
     puts "Please select a column from 1 to 7."
-    gets.chomp.to_i
+    gets.chomp
   end
 
   def verify_column_choice(choice)
-    if choice.is_a? Integer
+    if choice.match? /\A\d+\z/
       return choice
     else
       return false
