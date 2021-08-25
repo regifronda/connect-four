@@ -18,11 +18,11 @@ class Player
 
   def ask_for_column_choice
     puts "Please select a column from 1 to 7."
-    gets.chomp
+    gets.chomp.to_i
   end
 
   def verify_column_choice(choice)
-    if choice.match? /\A\d+\z/
+    if choice.is_a? Integer
       return choice
     else
       return false
